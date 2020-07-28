@@ -16,20 +16,11 @@
        * element that contains the map. */
       #map {
         display: block;
-            position: absolute;
-            width: 80%;
-            height: 75%;
-            top: 20%;
-            left: 10%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-          text-align: center;
-        
+        position: absolute;
+        width: 80%;
+        height: 75%;
+        top: 20%;
+        left: 10%;
       }
       #floating-panel {
         position: absolute;
@@ -217,16 +208,20 @@
   
   <body>
     <section class="page-header">
-      <h1 class="project-name"> Virtual Ustinov Day </h1>
-      <h2 class="project-tagline">Treasure Hunt </h2>
-      <p><img src="petersafari.png" alt="Peter Safari" style="float:right;width:120px;height:120px;">
-	      <img src="Crest_Text.jpg" alt="Ustinov GCR Loogo" style="float:left;width:120px;height:120px;"></p>
+		<h1 class="project-name"> Virtual Ustinov Day </h1>
+		<h2 class="project-tagline">Treasure Hunt </h2>
+		<div id="floating-panel">
+			<p><img src="petersafari.png" alt="Peter Safari" style="float:right;width:120px;height:120px;">
+			<img src="Crest_Text.jpg" alt="Ustinov GCR Loogo" style="float:left;width:120px;height:120px;"></p>
+		</div>
+      
     </section>
 
     <section class="main-content">
 	    
 
-	  
+	<div id="eggsRemain" class="eggCounter"><b>Places Remaining:</b><br> <span id="eggCount"></span> </div>
+    <div id="yourEggCount" class = "eggCounter"><b>Your Places:</b><br> <span id="yourEggs"></span> </div>  
 	  
 	<div id="map"></div>		
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- this just tells the code where it can find some of the commands used -->
