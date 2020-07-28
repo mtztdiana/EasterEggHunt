@@ -3,35 +3,215 @@
   
   <style>
     /* This is CSS that controls what the elements of the page that are defined in the HTML below look like. #name = html object with ID = name / .name = html object with class = name. Create two simple elements - title banner and a container that holds the map */
-       .eggPopup{
-            display: none;
-            position: absolute;              
-            z-index: 10;
-            background-color: #ffa64d;
-            padding: 5px;
-            text-align: center;
-            font-family: 'monospace','sans-serif';
-            font-size: 20px;
-            line-height: 60px;
-            width: 40%;
-            height: 40%;
-            top: 30%;
-            left: 30%;
-        }
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+          text-align: center;
         
-        #firstClue{
-            position: absolute;              
+      }
+      #floating-panel {
+        position: absolute;
+        display:none;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        margin-left: -100px;
+      }
+      #eggsRemain{
+          left: calc((100%-175px)/3);
+      }
+        #yourEggCount{
+          left: calc((100%-175px)*(2/3));
+      }
+        .eggCounter{
+          position: absolute;
+          display: block;
+          top: 20px;
+          width: 175px;
+          height: 50px;
+          font-size: 18px;
+          background-color: aliceblue;
+          z-index: 20;
+          font-family: 'Roboto','sans-serif';
+          border-radius: 5px;
+          padding-top: 4px;
+          font-weight: 400;
+        }
+        #eggFound {
+            background-image: url('EasterBackground.png');
+        }
+        #specialEggFound {
+            background-image: url('specialEgg.png');
+        }
+        .eggPopup{
+            display: none;
+            position: absolute;           
+            top: 15%;    
             z-index: 10;
-            background-color: #6543BC;
+            border-radius: 2%;
+            width: 600px;
+            height: 700px;
+            left: calc((100% - 700px)/2);
+            background-color: #fff8b4;
             padding: 5px;
             text-align: center;
-            font: oblique cursive;
+            font-family: 'Roboto','sans-serif';
             font-size: 30px;
             line-height: 60px;
-            width: 40%;
-            height: 40%;
-            top: 30%;
-            left: 30%;
+        }
+        #closeButton {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            font-size: 30px;
+            text-align: center;
+            left: 650px;
+            top: 10px;
+            background-color: aliceblue;
+            line-height: 45px;
+        }
+        input{
+            width: 400px;
+            height: 30px;
+            padding: 10px;
+            font-size: 20px;
+            text-align: center;
+            border: none;
+            border-bottom: 2px solid red;
+            border-radius: 10px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+        #mySubmit{
+            width: 150px;
+            height: 80px;
+            border: none;
+            border-radius: 10px;
+            background-color: pink;
+            cursor: pointer;
+        }
+        #eggTitle{
+            display: block;
+            line-height: 20px;
+            margin-top: 80px;
+        }
+        #foundMessage{
+            font-size: 20px;
+            line-height: 18px;
+        }
+        #intro{
+            z-index: 10;
+            font-size: 8px;
+            padding-top: 100px;
+        }
+        #instructions{  
+            z-index: 15;
+            font-size: 14px;
+            padding-top: 70px;
+        }
+        .startPopup{
+            display:block;
+            position: absolute;           
+            top: 15%;
+            line-height: 30px;
+            padding: 30px;
+            border-radius: 2%;
+            width: 540px;
+            height: 540px;
+            left: calc((100% - 700px)/2);
+            background-color: #fff8b4;
+            background-image: url('EasterBackground.png');
+            background-origin: border-box;
+            background-repeat: no-repeat;
+            background-size: 600px 700px;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+        }
+        #introTitle{
+            font-size: 30px;
+            padding: 10px;
+            
+        }
+        #emailloggingsubmit{
+            width: 150px;
+            height: 70px;
+            border: none;
+            border-radius: 10px;
+            background-color: pink;
+            cursor: pointer;
+        }
+        #introMessage{
+            font-size: 18px;
+        }
+        #emaillogging{
+            font-size: 18px;
+        }
+        .specialMessage{
+            z-index: 1500;
+             display:none;
+             position: absolute;           
+             top: 15%;
+             border-radius: 2%;
+            width: 900px;
+            height: 700px;
+            left: calc((100% - 900px)/2);
+            color: white;
+            background-color: #fff8b4;
+            background-size: 900px 700px;
+            background-origin: border-box;
+            background-repeat: no-repeat;
+            font-family: 'Roboto','sans-serif';
+            font-size: 20px;
+            line-height: 30px;
+        }
+        #allEggsFound{   
+            background-image: url('allEggsFound.png');
+          display: block;
+        }
+
+        #countdown{ 
+            background-image: url('countdownBg.png');
+        }
+        #countdown > div{
+            padding: 12px;
+            border-radius: 3px;
+            background: #00BF96;
+            display: inline-block;
+            width: 80px;
+            margin-top: 420px;
+            margin-left: 10px;
+        }
+
+        #countdown div > span{
+            width: 23px;
+            padding: 15px;
+            border-radius: 3px;
+            background: #00816A;
+            display: inline-block;
+        }
+        .title{
+            font-size: 50px;
+            padding: 10px;
+        }
+        #formHashInput{
+            display: none;
         }
         
     </style>
@@ -61,8 +241,8 @@
 <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
 
       map {
-  display: inline;
-} <!-- Map Box -->
+  		display: inline;
+	} <!-- Map Box -->
 		
 		<div id="eggClicked" class="eggPopup"> <!-- Popup when click on egg -->
 			<div id="closeButton" onclick="closeWindow()" style = "cursor:pointer">X</div>
