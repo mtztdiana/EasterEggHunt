@@ -8,7 +8,7 @@
             position: absolute;
             width: 80%;
             height: 75%;
-            top: 30%;
+            top: 20%;
             left: 10%;
         }
         
@@ -58,6 +58,7 @@
   
   <body>
     <section class="page-header">
+	    <img src="petersafari.png" alt="Peter Safari">
       <h1 class="project-name">Virtual Ustinov Day</h1>
       <h2 class="project-tagline">Treasure Hunt</h2>
       
@@ -182,7 +183,7 @@ function initMap() {
                 document.getElementById('introMessage').innerHTML = clues[i];
                 
                 // If you want to hide the egg that has just been clicked when found, the best way I found was just to resize the icon so its 0 in size -  if you don't just delete this section
-                var newIcon = {url: 'Peter.png', scaledSize: new google.maps.Size(0,0)};
+                var newIcon = {url: 'petersafari.png', scaledSize: new google.maps.Size(0,0)};
                 marker.setIcon(newIcon);
                  // hide egg from screen when clicked - marker will be removed on click
             }
