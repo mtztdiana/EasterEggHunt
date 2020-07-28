@@ -57,10 +57,8 @@
           font-weight: 400;
         }
         #eggFound {
-            background-image: url('EasterBackground.png');
-        }
-        #specialEggFound {
-            background-image: url('specialEgg.png');
+            background-image: url('Messages.png');
+			background-size: 700px 700px;
         }
         .eggPopup{
             display: none;
@@ -252,6 +250,11 @@
 	</div>
 
 	 
+	<!-- Window pops up when clicking on egg !-->
+    <div id="eggFound" class="eggPopup">
+        <span id="eggTitle">Congratulations! </span><span id="foundMessage">Please enter your information to record this egg</span>
+    </div> 
+	
 	<div id="map"></div>		
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- this just tells the code where it can find some of the commands used -->
       
@@ -336,7 +339,7 @@
 			
 			 google.maps.event.addListener(marker, 'click', (function(marker, i){ //if clicked on egg (marker) then do this function
 				return function(){
-					document.getElementById('eggClicked').style.display='block';  // show egg found panel
+					document.getElementById('eggFound').style.display='block';  // show egg found panel
 					
 					// Get the unique code of the marker that has been clicked on
 					var eggCode = locations[i][0];
