@@ -281,6 +281,7 @@
     var locations; // will be array containing coordinates of eggs
     var clues; // will be array containing clues
     var currentEgg = 0; //tracks the number of eggs you have found
+	var TotalPlaces = 8;
         
 	// This function gets the map set up on the screen
 	function initMap() {
@@ -388,6 +389,7 @@
 
 			//Update your eggs count on screen
 			document.getElementById("yourEggs").innerHTML = currentEgg;
+			document.getElementById("eggCount").innerHTML = TotalPlaces - currentEgg;
         }); // End of document on click
 
         
