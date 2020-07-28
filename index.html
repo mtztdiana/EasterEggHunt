@@ -259,143 +259,138 @@
   
     
     <script>
-        //start of javascript
+    //start of javascript
         
-        // code copyright Huw Thomas 2020
+    // code copyright Huw Thomas 2020
         
-        //First we need to define variables used - these are variables used in different functions of the code to store information too.
+    //First we need to define variables used - these are variables used in different functions of the code to store information too.
+    var panorama; // google streetview object
+    var clickedMarker; // id of egg that is clicked on
+    var markers = []; // empty array to store markers in
+    var locations; // will be array containing coordinates of eggs
+    var clues; // will be array containing clues
+    var currentEgg = 0; //tracks the number of eggs you have found
         
-        var panorama; // google streetview object
-        var clickedMarker; // id of egg that is clicked on
-        var markers = []; // empty array to store markers in
-        var locations; // will be array containing coordinates of eggs
-        var clues; // will be array containing clues
-        var currentEgg = 0; //tracks the number of eggs you have found
-        
-function initMap() {
-    // This function gets the map set up on the screen
-    
-    var startpoint = {lat:54.774305, lng:-1.576349}; // this variable contains the latitude and longitude of the point at which the camera is on page load - i.e. the crossroads by the science site. This variable is only used within function initMap, which is why it is declared here, and not with the others above.
-    var map = new google.maps.Map(document.getElementById('map'), {
-          center: startpoint,
-          zoom: 18,
-          disableDefaultUI: true
+	// This function gets the map set up on the screen
+	function initMap() {
+		var startpoint = {lat:54.774305, lng:-1.576349}; // this variable contains the latitude and longitude of the point at which the camera is on page load - i.e. the crossroads by the science site. This variable is only used within function initMap, which is why it is declared here, and not with the others above.
+		var map = new google.maps.Map(document.getElementById('map'), {
+			center: startpoint,
+			zoom: 18,
+			disableDefaultUI: true
         }); // This gets you a google map (not streetview)
     
-    //Next we have the code for the image used for the egg - but you can change this image to be whatever you want. The scaledSize adjusts the size that the image appears on the map
-    
-    var icon = {
+		//Next we have the code for the image used for the egg - but you can change this image to be whatever you want. The scaledSize adjusts the size that the image appears on the map
+		var icon = {
             url: 'petersafari.png', // egg image - this can also be an image saved in the same folder as your code i.e. url: 'egg.jpg',
             scaledSize: new google.maps.Size(130, 130), // scaled size
         };
     
-    // Here are the locations of the eggs - each has a unique identifier code 'AB12' followed by the latitude and longitude - here are three around the start point for reference. They must be entered in the order you wish to find them.
-    locations = [
-        ['DM87', 54.774219, -1.576281],
-        ['EC71', 54.774811, -1.576129],
-        ['MP59', 54.776959, -1.575379],
-        ['BB64', 54.768717, -1.573967],
-        ['SS98', 54.768839, -1.569859],
-        ['MC68', 54.766485, -1.560584],
-        ['BG74', 54.762760, -1.574245],
-        ['UC89', 54.768996, -1.590616]
-    ];
+		// Here are the locations of the eggs - each has a unique identifier code 'AB12' followed by the latitude and longitude - here are three around the start point for reference. They must be entered in the order you wish to find them.
+		locations = [
+			['DM87', 54.774219, -1.576281],
+			['EC71', 54.774811, -1.576129],
+			['MP59', 54.776959, -1.575379],
+			['BB64', 54.768717, -1.573967],
+			['SS98', 54.768839, -1.569859],
+			['MC68', 54.766485, -1.560584],
+			['BG74', 54.762760, -1.574245],
+			['UC89', 54.768996, -1.590616]
+		];
     
-    // can store a list of clues or something that correspond to each egg - i.e. the first clue corresponds to message that appears on finding the first egg in locations array (RS35). The clue to find the first egg is displayed when the page launches in div id="firstClue"
-    clues = [
-        ['The next Peter is by the entrance to the Castle'],
-        ['The next Peter is enjoying the Durham Market Place'],
-        ['The next Peter is going for some books at the Bill Bryson Library'],
-        ['The next Peter is located by the entrance to the Science Site'],
-        ['The next Peter is going to do some exercise at Maiden Castle'],
-        ['The next Peter is planing to relax at the Botanic Garden'],
-        ['The next Peter is visiting Sheraton Park'],
-        ['Peter has return home! Game Over']
-    ];
+		// can store a list of clues or something that correspond to each egg - i.e. the first clue corresponds to message that appears on finding the first egg in locations array (RS35). The clue to find the first egg is displayed when the page launches in div id="firstClue"
+		clues = [
+			['The next Peter is by the entrance to the Castle'],
+			['The next Peter is enjoying the Durham Market Place'],
+			['The next Peter is going for some books at the Bill Bryson Library'],
+			['The next Peter is located by the entrance to the Science Site'],
+			['The next Peter is going to do some exercise at Maiden Castle'],
+			['The next Peter is planing to relax at the Botanic Garden'],
+			['The next Peter is visiting Sheraton Park'],
+			['Peter has return home! Game Over']
+		];
              
-    
-    
-    var marker, i;
+		var marker, i;
             
-    // loop through eggs in locations matrix, set up a marker
-    for (i=0; i<8; i++){
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]), //Get latitude from second field in eahc row of locations array, and longitude from third field.
-            map: map,
-            icon: icon,
-            title: locations[i][0] //Unique ID for marker from locations array
-        });
-        markers.push(marker); // store placed marker in array called markers
-        
-         google.maps.event.addListener(marker, 'click', (function(marker, i){ //if clicked on egg (marker) then do this function
-            return function(){
-                document.getElementById('eggClicked').style.display='block';  // show egg found panel
-                
-                // Get the unique code of the marker that has been clicked on
-                var eggCode = locations[i][0];
-                
-                //increment egg counter
-                currentEgg++
-				document.getElementById("yourEggs").innerHTML = currentEgg;
-                
-               // Can display a message saying which specific egg has been found in panel
-                document.getElementById('foundMessage').innerHTML = 'You have found Peter: '+eggCode;
-                
-                // Display the next clue in panel - this displays the clue that corresponds to the egg that you have just found
-                document.getElementById('introMessage').innerHTML = clues[i];
-                
-                // If you want to hide the egg that has just been clicked when found, the best way I found was just to resize the icon so its 0 in size -  if you don't just delete this section
-                var newIcon = {url: 'petersafari.png', scaledSize: new google.maps.Size(0,0)};
-                marker.setIcon(newIcon);
-                 // hide egg from screen when clicked - marker will be removed on click
-            }
-         })(marker,i))
-    }
+		// loop through eggs in locations matrix, set up a marker
+		for (i=0; i<8; i++){
+			marker = new google.maps.Marker({
+				position: new google.maps.LatLng(locations[i][1], locations[i][2]), //Get latitude from second field in eahc row of locations array, and longitude from third field.
+				map: map,
+				icon: icon,
+				title: locations[i][0] //Unique ID for marker from locations array
+			});
+			markers.push(marker); // store placed marker in array called markers
+			
+			 google.maps.event.addListener(marker, 'click', (function(marker, i){ //if clicked on egg (marker) then do this function
+				return function(){
+					document.getElementById('eggClicked').style.display='block';  // show egg found panel
+					
+					// Get the unique code of the marker that has been clicked on
+					var eggCode = locations[i][0];
+					
+					//increment egg counter
+					currentEgg++
+					
+				   // Can display a message saying which specific egg has been found in panel
+					document.getElementById('foundMessage').innerHTML = 'You have found Peter: '+eggCode;
+					
+					// Display the next clue in panel - this displays the clue that corresponds to the egg that you have just found
+					document.getElementById('introMessage').innerHTML = clues[i];
+					
+					// If you want to hide the egg that has just been clicked when found, the best way I found was just to resize the icon so its 0 in size -  if you don't just delete this section
+					var newIcon = {url: 'petersafari.png', scaledSize: new google.maps.Size(0,0)};
+					marker.setIcon(newIcon);
+					 // hide egg from screen when clicked - marker will be removed on click
+				}
+			 })(marker,i))
+		}
     
-    // Onclick Function
-    document.addEventListener("click", function(){
+		// Onclick Function
+		document.addEventListener("click", function(){
 
-        //get camera position
-        position = panorama.getPosition();
-        positionLat = position.lat();
-        positionLong = position.lng();
-        
-        var minDist = 0.000225; // distance of camera from egg for egg to appear - the smaller minDist, the closer you must be to an egg for it to appear.
-        
-        // Loop through array of all markers and get coordinates for each    
-         for (var m = 0; m<markers.length; m++){
-             var markerPosition = markers[m].getPosition();
-             var markerPositionLat = markerPosition.lat();
-             var markerPositionLong = markerPosition.lng();
-             // Calculate distance between camera position and marker
-             var markerDistance = Math.sqrt(Math.pow((positionLat-markerPositionLat),2)+Math.pow((positionLong-markerPositionLong),2));
-             // If distance < minimum distance, display egg, else hide egg
-             
-             // It may be that you want people to solve the clues in order - i.e. they can't find the next egg until they have found the previous one to stop them from just wandering about
-             // using the currentEgg counter we can remove all eggs except the one you are currently looking for (the condition m===currentEgg)
-             
-             if (markerDistance < minDist && m === currentEgg){
-                 markers[m].setVisible(true);
-             } else {
-                 markers[m].setVisible(false);
-             }
-             
-             
-         }      
+			//get camera position
+			position = panorama.getPosition();
+			positionLat = position.lat();
+			positionLong = position.lng();
+			
+			var minDist = 0.000225; // distance of camera from egg for egg to appear - the smaller minDist, the closer you must be to an egg for it to appear.
+			
+			// Loop through array of all markers and get coordinates for each    
+			for (var m = 0; m<markers.length; m++){
+				var markerPosition = markers[m].getPosition();
+				var markerPositionLat = markerPosition.lat();
+				var markerPositionLong = markerPosition.lng();
+				// Calculate distance between camera position and marker
+				var markerDistance = Math.sqrt(Math.pow((positionLat-markerPositionLat),2)+Math.pow((positionLong-markerPositionLong),2));
+				// If distance < minimum distance, display egg, else hide egg
+				 
+				// It may be that you want people to solve the clues in order - i.e. they can't find the next egg until they have found the previous one to stop them from just wandering about
+				// using the currentEgg counter we can remove all eggs except the one you are currently looking for (the condition m===currentEgg)
+				 
+				if (markerDistance < minDist && m === currentEgg){
+					markers[m].setVisible(true);
+				} else {
+					markers[m].setVisible(false);
+				}	 
+			}  
 
+			//Update your eggs count on screen
+			document.getElementById("yourEggs").innerHTML = currentEgg;
         }); // End of document on click
 
         
         // Set up google street view and set visible.
-            panorama = map.getStreetView();
-            panorama.setPosition(startpoint);
-            panorama.setPov(/** @type {google.maps.StreetViewPov} */({
-              heading: 170,
-              pitch: 0
-            }));
-            panorama.setVisible(true);
-			
-			var countDownDate = new Date("Aug 1, 2020 10:00:00").getTime();
+        panorama = map.getStreetView();
+        panorama.setPosition(startpoint);
+        panorama.setPov(/** @type {google.maps.StreetViewPov} */({
+            heading: 170,
+            pitch: 0
+        }));
+        panorama.setVisible(true);
+    }; // End map init function
+        
+	var countDownDate = new Date("Aug 1, 2020 10:00:00").getTime();
 			// Update the count down every 1 second
 			var x = setInterval(function() {
 			  // Get today's date and time
@@ -437,10 +432,6 @@ function initMap() {
 						clickToGo: false
 					});
 			  }
-
-       }; // End map init function
-        
-
         
     function closeWindow(){
        // Hide windows when close button pressed
