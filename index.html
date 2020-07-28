@@ -57,26 +57,9 @@
           font-weight: 400;
         }
         #eggFound {
-            background-image: url('Messages.png');
-        }
-        .eggPopup{
-            display: none;
-            position: absolute;           
-            top: 15%;    
-            z-index: 10;
-            border-radius: 2%;
-            width: 600px;
-            height: 700px;
-            left: calc((100% - 700px)/2);
-            background-color: #fff8b4;
-			background-size: 700px 700px;
-			background-position: center;
-            padding: 5px;
-            text-align: center;
-            font-family: 'Roboto','sans-serif';
-            font-size: 30px;
-            line-height: 60px;
-			color: #faf1d2;
+            z-index: 15;
+            font-size: 18px;
+            padding-top: 70px;
         }
         #closeButton {
             position: absolute;
@@ -255,7 +238,7 @@
 
 	 
 	<!-- Window pops up when clicking on egg !-->
-    <div id="eggFound" class="eggPopup">
+    <div id="eggFound" class="startPopup">
         <span id="eggTitle">Congratulations on finding a Peter!  </span><div id="closeButton" onclick="closeWindow()" style = "cursor:pointer">X</div>
 		<span id="foundMessage"> <p id="introMessage"></p> </span>
     </div> 
