@@ -238,8 +238,8 @@
 		<p id="foundMessage"></p> <p id="introMessage"></p> </span>
     </div> 
 	
-	<div id="map"></div>		
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- this just tells the code where it can find some of the commands used -->
+	<div id="map"></div>	
+    <div id="pano"></div>	
       
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/mtztdiana/VirtualUstinovDay">Easter Virtual Egg Scavenger 2021</a> is maintained by <a href="https://github.com/mtztdiana">mtztdiana</a>.</span>
@@ -251,7 +251,7 @@
     </section>
  
 	
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- this just tells the code where it can find some of the commands used -->
 	
   
     
@@ -280,6 +280,17 @@
 			zoom: 18
 			//disableDefaultUI: true
         	}); // This gets you a google map (not streetview)
+
+        panorama = new google.maps.StreetViewPanorama(
+            document.getElementById("pano"),
+            {
+              position: fenway,
+              pov: {
+                heading: 34,
+                pitch: 10,
+              },
+            }
+        );
     
 		//Next we have the code for the image used for the egg - but you can change this image to be whatever you want. The scaledSize adjusts the size that the image appears on the map
 		var icon = {
@@ -384,13 +395,14 @@
 
         
         // Set up google street view and set visible.
-        panorama = map.getStreetView();
-        panorama.setPosition(startpoint);
-        panorama.setPov(/** @type {google.maps.StreetViewPov} */({
-            heading: 170,
-            pitch: 0
-        }));
-        panorama.setVisible(true);
+        map.setStreetView(panorama);
+        //panorama = map.getStreetView();
+        //panorama.setPosition(startpoint);
+        //panorama.setPov(/** @type {google.maps.StreetViewPov} */({
+        //    heading: 170,
+        //    pitch: 0
+        //}));
+        //panorama.setVisible(true);
     }; // End map init function
      
 	//Countdown message 
