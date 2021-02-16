@@ -19,7 +19,7 @@
         position: absolute;
         width: 80%;
         height: 75%;
-        top: 20%;
+        top: 30%;
         left: 10%;
       }
       #floating-panel {
@@ -30,7 +30,7 @@
         z-index: 5;
         padding: 5px;
         border: 1px solid #999;
-        line-height: 30px;
+        line-height: 20px;
         padding-left: 10px;
       }
       #floating-panel {
@@ -61,7 +61,7 @@
             font-size: 20px;
             padding-top: 70px;
         }
-		.eggPopup{
+	.eggPopup{
             display: none;
             position: absolute;           
             top: 15%;
@@ -99,7 +99,7 @@
 			color: #faf1d2;
         }
         #foundMessage{
-            font-size: 20px;
+            font-size: 40px;
             line-height: 18px;
 			color: #faf1d2;
         }
@@ -264,7 +264,7 @@
     var locations; // will be array containing coordinates of eggs
     var clues; // will be array containing clues
     var currentEgg = 0; //tracks the number of eggs you have found
-	var TotalPlaces = 8;
+    var TotalPlaces = 8;
         
 	// This function gets the map set up on the screen
 	function initMap() {
@@ -273,13 +273,13 @@
 			center: startpoint,
 			zoom: 18,
 			disableDefaultUI: true
-        }); // This gets you a google map (not streetview)
+        	}); // This gets you a google map (not streetview)
     
 		//Next we have the code for the image used for the egg - but you can change this image to be whatever you want. The scaledSize adjusts the size that the image appears on the map
 		var icon = {
-            url: 'Egg.png', // egg image - this can also be an image saved in the same folder as your code i.e. url: 'egg.jpg',
-            scaledSize: new google.maps.Size(130, 130), // scaled size
-        };
+            		url: 'Egg.png', // egg image - this can also be an image saved in the same folder as your code i.e. url: 'egg.jpg',
+            		scaledSize: new google.maps.Size(130, 130), // scaled size
+        	};
     
 		// Here are the locations of the eggs - each has a unique identifier code 'AB12' followed by the latitude and longitude - here are three around the start point for reference. They must be entered in the order you wish to find them.
 		locations = [
@@ -302,7 +302,7 @@
 			['The next Egg is going to do some exercise at Maiden Castle'],
 			['The next Egg is planing to relax at the Botanic Garden'],
 			['The next Egg is visiting Sheraton Park'],
-			['Peter has return home! Game Over']
+			['Peter has return home! You found all the eggs. Game Over']
 		];
              
 		var marker, i;
