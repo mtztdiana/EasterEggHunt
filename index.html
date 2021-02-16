@@ -271,8 +271,8 @@
         
 	// This function gets the map set up on the screen
 	function initMap() {
-		const startpoint = {lat:54.774305, lng:-1.576349}; // this variable contains the latitude and longitude of the point at which the camera is on page load - i.e. the crossroads by the science site. This variable is only used within function initMap, which is why it is declared here, and not with the others above.
-		const map = new google.maps.Map(document.getElementById('map'), {
+		var startpoint = {lat:54.774305, lng:-1.576349}; // this variable contains the latitude and longitude of the point at which the camera is on page load - i.e. the crossroads by the science site. This variable is only used within function initMap, which is why it is declared here, and not with the others above.
+		var map = new google.maps.Map(document.getElementById('map'), {
 			center: startpoint,
 			zoom: 18
 			//disableDefaultUI: true
@@ -308,7 +308,7 @@
 			['Peter has return home! You found all the eggs. Game Over']
 		];
              
-		const marker;
+		var marker;
 		var i;
             
 		// loop through eggs in locations matrix, set up a marker
