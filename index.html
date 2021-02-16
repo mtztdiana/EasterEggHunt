@@ -284,7 +284,7 @@
         panorama = new google.maps.StreetViewPanorama(
             document.getElementById("pano"),
             {
-              position: fenway,
+              position: startpoint,
               pov: {
                 heading: 34,
                 pitch: 10,
@@ -292,6 +292,8 @@
             }
         );
     
+        map.setStreetView(panorama);
+        
 		//Next we have the code for the image used for the egg - but you can change this image to be whatever you want. The scaledSize adjusts the size that the image appears on the map
 		var icon = {
             		url: 'Egg.png', // egg image - this can also be an image saved in the same folder as your code i.e. url: 'egg.jpg',
@@ -395,7 +397,6 @@
 
         
         // Set up google street view and set visible.
-        map.setStreetView(panorama);
         //panorama = map.getStreetView();
         //panorama.setPosition(startpoint);
         //panorama.setPov(/** @type {google.maps.StreetViewPov} */({
