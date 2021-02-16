@@ -111,7 +111,7 @@
         .startPopup{
             display:block;
             position: absolute;           
-            top: 15%;
+            top: 20%;
             line-height: 30px;
             padding: 30px;
             border-radius: 2%;
@@ -189,8 +189,8 @@
 		<h1 class="project-name"> Easter Virtual Egg Scavenger </h1>
 		<h2 class="project-tagline">2021 </h2>
 		<div id="floating-panel">
-			<p><img src="petersafari.png" alt="Peter Safari" style="float:right;width:120px;height:120px;">
-			<img src="Crest_Text.png" alt="Ustinov GCR Loogo" style="float:left;width:160px;height:120px;"></p>
+			<p><img src="petersafari.png" alt="Peter Safari" style="float:right;width:120px;height:100px;">
+			<img src="Crest_Text.png" alt="Ustinov GCR Loogo" style="float:left;width:160px;height:100px;"></p>
 		</div>
       
     </section>
@@ -198,8 +198,8 @@
     <section class="main-content">
 	    
 
-    <div id="eggsRemain" class="eggCounter"><b>Places Remaining:</b><br> <span id="eggCount"></span> </div>
-    <div id="yourEggCount" class = "eggCounter"><b>Places Visited:</b><br> <span id="yourEggs"></span> </div>  
+    <div id="eggsRemain" class="eggCounter"><b>Eggs Remaining:</b><br> <span id="eggCount"></span> </div>
+    <div id="yourEggCount" class = "eggCounter"><b>Eggs you have:</b><br> <span id="yourEggs"></span> </div>  
 	
 	
 	<div id = "countdown" class = "specialMessage">
@@ -222,16 +222,16 @@
     </div>
 	
 	<div id="instructions" class="startPopup"><span class="title">Instructions</span><div id="closeButton" onclick="closeWindow()" style = "cursor:pointer">X</div>
-		<p>Using the arrow keys or by clicking on the screen, move around Durham to look for Peter. You can move the camera about by clicking and dragging</p>
-		<p>Peter is not visible until you are close to him, and will only appear as you drag the screen to look around!</p>
-		<p>When you see Peter, click on him! He will then give you instructions to the next place he is going.</p>
-		<p>At the top of the screen you will see how many places remain in the game for you to find, and also how many places you have found.<p>If streetview gets stuck, press refresh to go back to the starting point.</p></p>
+		<p>Using the arrow keys or by clicking on the screen, move around Durham to look for eggs. You can move the camera about by clicking and dragging</p>
+		<p>An egg is not visible until you are close to it, and will only appear as you drag the screen to look around!</p>
+		<p>When you see an egg, click on it! The egg will then give you instructions to the next place you can fing another one.</p>
+		<p>At the top of the screen you will see how many eggs remain in the game for you to find, and also how many eggs you have found.<p>If streetview gets stuck, press refresh to go back to the starting point.</p></p>
 	</div>
 
 	 
 	<!-- Window pops up when clicking on egg !-->
     <div id="eggFound" class="eggPopup"><div id="closeButton" onclick="closeWindow()" style = "cursor:pointer">X</div>
-        <span id="eggTitle">Congratulations on finding a Peter!  
+        <span id="eggTitle">Congratulations on finding an egg!  
 		<p id="foundMessage"></p> <p id="introMessage"></p> </span>
     </div> 
 	
