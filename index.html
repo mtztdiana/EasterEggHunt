@@ -277,7 +277,7 @@
     
 		//Next we have the code for the image used for the egg - but you can change this image to be whatever you want. The scaledSize adjusts the size that the image appears on the map
 		var icon = {
-            url: 'Egg.jpg', // egg image - this can also be an image saved in the same folder as your code i.e. url: 'egg.jpg',
+            url: 'Egg.png', // egg image - this can also be an image saved in the same folder as your code i.e. url: 'egg.jpg',
             scaledSize: new google.maps.Size(130, 130), // scaled size
         };
     
@@ -334,7 +334,7 @@
 					document.getElementById('introMessage').innerHTML = clues[i];
 					
 					// If you want to hide the egg that has just been clicked when found, the best way I found was just to resize the icon so its 0 in size -  if you don't just delete this section
-					var newIcon = {url: 'Egg.jpg', scaledSize: new google.maps.Size(0,0)};
+					var newIcon = {url: 'Egg.png', scaledSize: new google.maps.Size(0,0)};
 					marker.setIcon(newIcon);
 					 // hide egg from screen when clicked - marker will be removed on click
 				}
