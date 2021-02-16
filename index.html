@@ -183,17 +183,21 @@
             font-size: 50px;
             padding: 10px;
         }
-	.project-name{
-	    top: 20px;
-	    }
+        .header {
+            padding: 60px;
+            text-align: center;
+            background: #1abc9c;
+            color: white;
+            font-size: 30px;
+        }
         
     </style>
   </head>
   
   <body>
     <section class="page-header">
-		<h1 class="project-name"> Easter Egg Scavenger </h1>
-		<h2 class="project-tagline">Virtual 2021 </h2>
+		<h1 class="project-name"> Easter Virtual Egg Scavenger </h1>
+		<h2 class="project-tagline">2021 </h2>
 		<div id="floating-panel">
 			<p><img src="petersafari.png" alt="Peter Safari" style="float:right;width:110px;height:100px;">
 			<img src="Crest_Text.png" alt="Ustinov GCR Loogo" style="float:left;width:160px;height:100px;"></p>
@@ -269,11 +273,11 @@
     var locations; // will be array containing coordinates of eggs
     var clues; // will be array containing clues
     var currentEgg = 0; //tracks the number of eggs you have found
-    var TotalPlaces = 8;
+    var TotalPlaces = 9;
         
 	// This function gets the map set up on the screen
 	function initMap() {
-		var startpoint = {lat:54.774305, lng:-1.576349}; // this variable contains the latitude and longitude of the point at which the camera is on page load - i.e. the crossroads by the science site. This variable is only used within function initMap, which is why it is declared here, and not with the others above.
+		var startpoint = {lat:54.777537, lng:-1.581869}; // this variable contains the latitude and longitude of the point at which the camera is on page load - i.e. the crossroads by the science site. This variable is only used within function initMap, which is why it is declared here, and not with the others above.
 		var map = new google.maps.Map(document.getElementById('map'), {
     			center: startpoint,
     			zoom: 18,
@@ -289,7 +293,8 @@
     
 		// Here are the locations of the eggs - each has a unique identifier code 'AB12' followed by the latitude and longitude - here are three around the start point for reference. They must be entered in the order you wish to find them.
 		locations = [
-			['DM87', 54.774219, -1.576281],
+			['BS22', 54.777537, -1.581869],
+            ['DM87', 54.774219, -1.576281],
 			['EC71', 54.774811, -1.576129],
 			['MP59', 54.776959, -1.575379],
 			['BB64', 54.768717, -1.573967],
@@ -301,6 +306,7 @@
     
 		// can store a list of clues or something that correspond to each egg - i.e. the first clue corresponds to message that appears on finding the first egg in locations array (RS35). The clue to find the first egg is displayed when the page launches in div id="firstClue"
 		clues = [
+            ['The next Egg is taking a selfie in front of the Cathedral'],
 			['The next Egg is by the entrance to the Castle'],
 			['The next Egg is enjoying the Durham Market Place'],
 			['The next Egg is going for some books at the Bill Bryson Library (look around the intersection)'],
@@ -315,7 +321,7 @@
 		var i;
             
 		// loop through eggs in locations matrix, set up a marker
-		for (i=0; i<8; i++){
+		for (i=0; i<9; i++){
 			marker = new google.maps.Marker({
 				position: new google.maps.LatLng(locations[i][1], locations[i][2]), //Get latitude from second field in eahc row of locations array, and longitude from third field.
 				map: map,
